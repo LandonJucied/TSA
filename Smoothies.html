@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vegan/Vegetarian Smoothies & Drinks</title>
+  <style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    padding: 20px;
+    color: #fff
+  }
+ 
+  .filters {
+    background-color: #20742b;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+ 
+  .product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+ 
+  .product-item {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: calc(33% - 20px);
+    box-sizing: border-box;
+    text-align: center;
+  }
+ 
+  .product-item img {
+    width: 30%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+ 
+  .product-item h3 {
+    font-size: 18px;
+    color: #333;
+  }
+ 
+  .product-item p {
+    color: #666;
+  }
+  </style>
+</head>
+<body>
+
+
+
+
+  <div class="filters">
+    <h2>Filter by</h2>
+    <label>
+      <input type="checkbox" id="veganFilter" /> Vegan
+    </label>
+    <label>
+      <input type="checkbox" id="vegetarianFilter" /> Vegetarian
+    </label>
+    <label>
+      <input type="checkbox" id="glutenFreeFilter" /> Gluten-Free
+    </label>
+    <br>
+    <button onclick="filterProducts()">Apply Filters</button>
+  </div>
+
+
+
+
+  <div id="productList" class="product-list">
+    <!-- Product items will be listed here -->
+  </div>
+
+
+
+
+  <script>
+    const products = [
+  { id: 1, name: "Green Smoothie", type: "vegan", glutenFree: true, imageUrl: "green-smoothie.jpg"},
+  { id: 2, name: "Berry Blast", type: "vegetarian", glutenFree: true, imageUrl: "berry-blast.jpg" },
+  { id: 3, name: "Tropical Drink", type: "vegan", glutenFree: false, imageUrl: "tropical-drink.jpg" },
+  { id: 4, name: "Mango Madness", type: "vegetarian", glutenFree: true, imageUrl: "mango-madness.jpg" },
+  { id: 5, name: "Banana Smoothie", type: "vegan", glutenFree: true, imageUrl: "banana-smoothie.jpg" },
+  { id: 6, name: "Citrus Refresh", type: "vegetarian", glutenFree: false, imageUrl: "citrus-refresh.jpg" },
+  { id: 7, name: "Vegan Breakfast Smoothie", type: "vegan", glutenFree: false, imageUrl: "vegan-oat.jpg" },
+  { id: 8, name: "Strawberry-Blueberry-Banana Smoothie", type: "vegetarian", glutenFree: false, imageUrl: "str-blu.jpg" },
+  { id: 9, name: "Almond Butter & Banana Protein Smoothie", type: "vegetarian", glutenFree: false, imageUrl: "alm-banna.jpg" },
+  { id: 10, name: "Vegan Smoothie Bowl", type: "vegan", glutenFree: false, imageUrl: "smoothie-bowl.jpg" },
+  { id: 11, name: "Strawberry-Pineapple Smoothie", type: "vegetarian", glutenFree: false, imageUrl: "str-pin.jpg" },
+  { id: 12, name: "Mango Raspberry Smoothie", type: "vegan", glutenFree: false, imageUrl: "mango-rass.jpg" },
+  { id: 13, name: "Apple-Peanut Butter Smoothie", type: "vegan", glutenFree: false, imageUrl: "apple-butter.jpg" },
+  { id: 14, name: "Blueberry & Spinach Smoothie", type: "vegan", glutenFree: false, imageUrl: "blue-spin.jpg" },
+  { id: 15, name: "Creamy Watermelon Smoothie", type: "vegetarian", glutenFree: false, imageUrl: "watermelon.jpg" },
+  { id: 16, name: "Cherry Smoothie", type: "vegetarian", glutenFree: false, imageUrl: "cherry.jpg" },
+  { id: 17, name: "Pineapple-Grapefruit Detox Smoothie", type: "vegetarian", glutenFree: false, imageUrl: "grape-detox.jpg" },
+  { id: 18, name: "Coconut Blueberry Smoothie", type: "vegan", glutenFree: false, imageUrl: "coco-blue.jpg" },
+  { id: 19, name: "Strawberry-Mango-Banana Smoothie", type: "vegetarian", glutenFree: false, imageUrl: "straw-mango-banana.jpg" },
+  { id: 20, name: "Kale & Spinach Smoothie", type: "vegan", glutenFree: false, imageUrl: "kale.jpg" },
+  { id: 21, name: "Carrot-Apple Smoothie", type: "vegetarian", glutenFree: false, imageUrl: "carrot-apple.jpg" },
+];
+
+
+
+
+const productList = document.getElementById('productList');
+
+
+
+
+function filterProducts() {
+  const veganFilter = document.getElementById('veganFilter').checked;
+  const vegetarianFilter = document.getElementById('vegetarianFilter').checked;
+  const glutenFreeFilter = document.getElementById('glutenFreeFilter').checked;
+
+
+
+
+  const filteredProducts = products.filter(product => {
+    const matchesVegan = veganFilter && product.type === 'vegan';
+    const matchesVegetarian = vegetarianFilter && product.type === 'vegetarian';
+    const matchesGlutenFree = glutenFreeFilter ? product.glutenFree : true;
+
+
+
+
+    return (matchesVegan || matchesVegetarian) && matchesGlutenFree;
+  });
+
+
+
+
+  displayProducts(filteredProducts);
+}
+
+
+
+
+function displayProducts(products) {
+  productList.innerHTML = '';
+
+
+
+
+  if (products.length === 0) {
+    productList.innerHTML = '<p>No products found!</p>';
+    return;
+  }
+
+
+
+
+  products.forEach(product => {
+    const productItem = document.createElement('div');
+    productItem.classList.add('product-item');
+
+
+
+
+    productItem.innerHTML = `
+      <img src="${product.imageUrl}" alt="${product.name}">
+      <h3>${product.name}</h3>
+      <p>${product.type.charAt(0).toUpperCase() + product.type.slice(1)}</p>
+    `;
+
+
+
+
+    productList.appendChild(productItem);
+  });
+}
+
+
+
+
+// Initialize with all products
+displayProducts(products);
+
+
+
+
+  </script>
+</body>
+</html>
+
+
+

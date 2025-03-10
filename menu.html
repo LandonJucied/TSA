@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dish Filter</title>
+    <style>
+        /* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9fffb;
+}
+
+
+.filter-section {
+    background-color: #176421;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    color: #ddd;
+}
+
+
+.filter-section h2 {
+    margin-bottom: 20px;
+}
+
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+
+form input[type="checkbox"], form select, form input[type="range"] {
+    margin-right: 10px;
+}
+
+
+.dishes-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+
+.dish-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+.dish-card img {
+    width: 60%;
+    height: auto;
+}
+
+
+.dish-card h3 {
+    margin-top: 10px;
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="filter-section">
+        <h2>Filter Dishes</h2>
+        <form id="filter-form">
+            <label for="vegan">
+                <input type="checkbox" id="vegan" name="diet" value="vegan"> Vegan
+            </label>
+            <br>
+            <label for="vegetarian">
+                <input type="checkbox" id="vegetarian" name="diet" value="vegetarian"> Vegetarian
+            </label>
+            <br>
+            <label for="cuisine">
+                Cuisine:
+                <select id="cuisine" name="cuisine">
+                    <option value="all">All</option>
+                    <option value="italian">Italian</option>
+                    <option value="indian">Indian</option>
+                    <option value="asian">Asian</option>
+                    <option value="other">Other</option>
+                    <!-- Add more cuisines -->
+                </select>
+            </label>
+            <br>
+            <label for="price-range">
+                Price Range:
+                <input type="range" id="price-range" name="price-range" min="0" max="100" step="5">
+                <span id="price-value">0</span>
+            </label>
+            <br>
+            <button type="submit">Apply Filters</button>
+        </form>
+    </div>
+
+
+    <div class="dishes-list" id="dishes-list">
+        <!-- Filtered dishes will be displayed here -->
+    </div>
+
+
+    <script>// script.js
+
+
+        const dishes = [
+            { id: 1, name: "Vegan Pasta", diet: "vegan", cuisine: "italian", price: 12, img: "Vegan Pasta.jpeg" },
+            { id: 2, name: "Vegetarian Pizza", diet: "vegetarian", cuisine: "italian", price: 15, img: "veggie-pizza.jpg" },
+            { id: 3, name: "Tofu Stir Fry", diet: "vegan", cuisine: "asian", price: 10, img: "tofu-stirfry.jpg" },
+            { id: 4, name: "Vegetarian Curry", diet: "vegetarian", cuisine: "other", price: 14, img: "vegetarian-curry.jpg" },
+            { id: 5, name: "Bruschetta summer pasta salad", diet: "vegetarian", cuisine: "other", price: 14, img: "summer pasta salad.jpg" },
+            { id: 6, name: "Nagi’s Big, Easy Pasta Salad", diet: "vegetarian", cuisine: "other", price: 14, img: "pasta-salad.jpg" },
+            { id: 7, name: "Chickpea-salad", diet: "vegan", cuisine: "other", price: 14, img: "chickpea.jpg" },
+            { id: 8, name: "Sweet potato & coconut curry", diet: "vegan", cuisine: "other", price: 14, img: "sweet-potato.jpg" },
+            { id: 9, name: "Vegan ramen", diet: "vegan", cuisine: "other", price: 14, img: "vegan ramen.jpg" },
+            { id: 10, name: "Vegan chickpea curry jacket potatoes", diet: "vegan", cuisine: "other", price: 14, img: "chickpea-curry.jpg" },
+            { id: 11, name: "Vegan mac and cheese", diet: "vegan", cuisine: "other", price: 14, img: "vegan-mac.jpg" },
+            { id: 12, name: "Speedy lentil coconut curry", diet: "vegan", cuisine: "other", price: 14, img: "coconut-curry.jpg" },
+            { id: 13, name: "Curried Pumpkin Soup", diet: "vegetarian", cuisine: "other", price: 14, img: "pumpkin-curry.jpg" },
+            { id: 14, name: "Roasted Cauliflower and Hummus Bowl", diet: "vegetarian", cuisine: "other", price: 14, img: "hummus-bowl.jpg" },
+            { id: 15, name: "Spring Salad With Barley and Lemon Chive Vinaigrette", diet: "vegetarian", cuisine: "other", price: 14, img: "spring-salad.jpg" },
+            { id: 16, name: "Butternut Squash Soup", diet: "vegetarian", cuisine: "other", price: 14, img: "squash-soup.jpg" },
+            { id: 17, name: "Vegan Buddha Bowl", diet: "vegetarian", cuisine: "other", price: 14, img: "vegan-bowl.jpg" },
+            { id: 18, name: "Grilled Tofu Sandwich", diet: "vegetarian", cuisine: "other", price: 14, img: "grilled-tofu.jpg" },
+            { id: 19, name: "Spaghetti Squash Primavera", diet: "vegetarian", cuisine: "other", price: 14, img: "squash-soup.jpg" },
+            // Add more dishes
+        ];
+       
+        const priceRange = document.getElementById("price-range");
+        const priceValue = document.getElementById("price-value");
+        const filterForm = document.getElementById("filter-form");
+        const dishesList = document.getElementById("dishes-list");
+       
+        priceRange.addEventListener("input", function () {
+            priceValue.textContent = "$" + priceRange.value;
+        });
+       
+        filterForm.addEventListener("submit", function (event) {
+            event.preventDefault();
+       
+            const veganChecked = document.getElementById("vegan").checked;
+            const vegetarianChecked = document.getElementById("vegetarian").checked;
+            const cuisine = document.getElementById("cuisine").value;
+            const price = parseInt(priceRange.value);
+       
+            const filteredDishes = dishes.filter(dish => {
+                return (
+                    (veganChecked && dish.diet === "vegan" || vegetarianChecked && dish.diet === "vegetarian") &&
+                    (cuisine === "all" || dish.cuisine === cuisine) &&
+                    dish.price <= price
+                );
+            });
+       
+            displayDishes(filteredDishes);
+        });
+       
+        function displayDishes(filteredDishes) {
+            dishesList.innerHTML = "";
+       
+            if (filteredDishes.length === 0) {
+                dishesList.innerHTML = "<p>No dishes found</p>";
+                return;
+            }
+       
+            filteredDishes.forEach(dish => {
+                const dishCard = document.createElement("div");
+                dishCard.classList.add("dish-card");
+       
+                dishCard.innerHTML = `
+                    <img src="${dish.img}" alt="${dish.name}">
+                    <h3>${dish.name}</h3>
+                    <p>$${dish.price}</p>
+                `;
+       
+                dishesList.appendChild(dishCard);
+            });
+        }
+       
+        // Initially display all dishes
+        displayDishes(dishes);
+        </script>
+</body>
+</html>

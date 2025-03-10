@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #313030;
+        }
+        header {
+            background-color: #477748;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+        .section {
+            padding: 50px 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .section h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #367738;
+        }
+        .section p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        nav {
+            text-align: center;
+            background-color: #333;
+            padding: 10px 0;
+        }
+        nav a {
+            color: white;
+            padding: 12px 20px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        nav a:hover {
+            background-color: #4CAF50;
+        }
+        .sustainability-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .sustainability-item {
+            flex: 1 1 calc(33.33% - 20px);
+            background-color: #a7a5a5;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(228, 212, 212, 0.1);
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+        footer a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        .reservation-form input, .reservation-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .reservation-form button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .reservation-form button:hover {
+            background-color: #45a049;
+        }
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .menu-item h3 {
+            color: #4CAF50;
+            margin: 0;
+            font-size: 24px;
+        }
+        .menu-item p {
+            font-size: 16px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Vegetarian Empire</h1>
+        <p> Delicious, Sustainable, Vegetarian Foods</p>
+    </header>
+
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#menu">Menu</a>
+        <a href="#sustainability">Sustainability</a>
+        <a href="#reservations">Reservations</a>
+        <a href="#contact">Contact Us</a>
+    </nav>
+
+
+
+
+    <section id="home" class="section">
+        <h2>Welcome to a Glowing Green Restaurant</h2>
+        <p>At Vegetarian Empire, we only serve the most fresh, and sustainable vegetarian foods made from locally sourced ingredients. Our commitment to keeping it vegetarian ensures that every dish is as nutritious as it is delicious. Join us and enjoy a welcoming, plant-based dining experience in the heart of the city.</p>
+        <img src="Interior.jpg.webp" alt="Restaurant Interior" class="img-container" style="width: 500px; height: auto;">
+    </section>
+   
+    <section id="menu" class="section">
+        <h2>Our Menu</h2>
+        <div class="menu-item">
+            <div>
+                <h3>Vegan Buddha Bowl</h3>
+                <p>A colorful and wholesome bowl filled with quinoa, roasted vegetables, avocado, chickpeas, and our homemade tahini dressing.</p>
+            </div>
+            <p>$14.99</p>
+        </div>
+   
+        <div class="menu-item">
+            <div>
+                <h3>Grilled Tofu Sandwich</h3>
+                <p>Marinated tofu grilled to perfection, served with fresh greens, tomato, and avocado on a whole-grain bun.</p>
+            </div>
+            <p>$12.50</p>
+        </div>
+   
+        <div class="menu-item">
+            <div>
+                <h3>Spaghetti Squash Primavera</h3>
+                <p>Roasted spaghetti squash served with seasonal vegetables, garlic, olive oil, and a sprinkle of fresh basil.</p>
+            </div>
+            <p>$16.00</p>
+        </div>
+        <button onclick="goToPage()">See Full Menu...</button>
+
+
+        <script>
+            function goToPage() {
+                window.location.href = "menu.html";
+            }
+        </script>
+    </section>
+   
+    <section id="menu" class="section">
+        <h2>Our Menu</h2>
+        <div class="menu-item">
+            <div>
+                <h3>Mango Madness</h3>
+
+
+            </div>
+           
+        </div>
+   
+        <div class="menu-item">
+            <div>
+                <h3>Green Smoothie</h3>
+               
+            </div>
+       
+        </div>
+   
+        <div class="menu-item">
+            <div>
+                <h3>Berry Blast</h3>
+               
+            </div>
+           
+        </div>
+        <form action="Smoothies.html">
+            <button type="submit">See Full Menu...</button>
+        </form>
+       
+
+
+       
+
+
+    <section id="sustainability" class="section">
+        <h2>Sustainability</h2>
+        <p>At Vegetarian Empire, sustainability is the core of everything we do. From sourcing our ingredients locally to using enviroment friendly packaging, we hope to make every aspect of our restaurant eco-friendly. This is how we contribute to a greener planet:</p>
+   
+        <div class="sustainability-list">
+            <div class="sustainability-item">
+                <h3>Farm to Table</h3>
+                <p>We partner with local farms to ensure our ingredients are always fresh and organic. This also means that we can get them at discounted prices because we are not buying things from big corparations. This reduces the carbon footprint of transporting food and supports local farmers amd businesses.</p>
+            </div>
+   
+            <div class="sustainability-item">
+                <h3>Waste Reduction</h3>
+                <p>We limot the waste of foods by composting, recycling, and also donating left over food to local homeless shelters, homeless people ect. We train our team to make the most out of every ingredient.</p>
+            </div>
+   
+            <div class="sustainability-item">
+                <h3>Eco Friendly Packaging</h3>
+                <p>We use biodegradable and easily reuseable packaging for takeout and delivery orders. Our commitment extends to minimizing plastic usage wherever possible.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="about" class="section">
+        <h2>About Us</h2>
+        <p>At Vegetarian Green, we want to create a excellent dining experience that not only tastes good but also helps protect our planet. Our commitment to sustainability goes beyond the food. We work closely with local farmers, choose organic ingredients, and use enviroment friendly packaging.</p>
+        <p>Our chefs focus on making dishes that highlight the natural flavors of fresh, seasonal produce, with a creative twist. Whether you are vegan, vegetarian, or looking to explore healthier eating options, we have got something for anyone.</p>
+    </section>
+
+
+    <section id="reservations" class="section">
+        <h2>Make a Reservation</h2>
+        <form class="reservation-form">
+            <label for="name">Name</label>
+            <input type="text" id="name" required>
+   
+            <label for="email">Email</label>
+            <input type="email" id="email" required>
+   
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" required>
+   
+            <label for="date">Reservation Date</label>
+            <input type="date" id="date" required>
+   
+            <label for="time">Reservation Time</label>
+            <input type="time" id="time" required>
+   
+            <label for="specialRequests">Special Requests</label>
+            <textarea id="specialRequests"></textarea>
+   
+            <button type="submit">Reserve Now</button>
+        </form>
+    </section>
+
+
+    <section id="contact" class="section">
+        <h2>Contact Us</h2>
+        <p>Have questions? Want to know more about our menu or sustainability practices? Reach out to us!</p>
+        <p><strong>Address:</strong> 123 Green St., Veggie City, USA</p>
+        <p><strong>Phone:</strong> (555) 123-4567</p>
+        <p><strong>Email:</strong> info@vegetarian.empire</p>
+        <p>Follow us on social media:</p>
+        <p>
+            <a href="https://facebook.com/vibrantgreen" target="_blank">Facebook</a> |
+            <a href="https://instagram.com/vibrantgreen" target="_blank">Instagram</a>
+        </p>
+    </section>
+   
+    <form action="reference.html">
+        <button type="submit">See Refrences...</button>
+    </form>
+
+    <footer>
+        <p style="text-align: center;">&copy; 2025 Vegetarian Empire Restaurant. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
